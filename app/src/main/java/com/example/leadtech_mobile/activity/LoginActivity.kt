@@ -1,6 +1,7 @@
 package com.example.leadtech_mobile.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -19,11 +20,15 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        supportActionBar?.hide()
+        window.statusBarColor = Color.WHITE
+
         usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
 
         val edtEmail = findViewById<EditText>(R.id.editTextEmail)
         val edtPassword = findViewById<EditText>(R.id.editTextPassword)
         val btnLogin = findViewById<Button>(R.id.buttonLogin)
+        val btnCadastro = findViewById<Button>(R.id.buttonCadastro)
 
         btnLogin.setOnClickListener {
             val email = edtEmail.text.toString()
@@ -44,6 +49,11 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_LONG).show()
             }
+        }
+
+        btnCadastro.setOnClickListener {
+            val intent = Intent(this, CadastroActivity::class.java)
+            startActivity(intent)
         }
     }
 }
