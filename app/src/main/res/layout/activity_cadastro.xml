@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="582dp"
+        android:layout_height="982dp"
+        android:layout_marginTop="-300dp"
+        android:contentDescription="@null"
+        android:paddingLeft="-150dp"
+        android:scaleType="fitStart"
+        app:srcCompat="@drawable/bglogin"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/realize_seu_cadastro"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#ffffff"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <TextView
+            android:id="@+id/labelNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="170dp"
+            android:text="@string/nome"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextNome"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:autofillHints=""
+            android:background="@drawable/edittext_backgroud"
+            android:ems="10"
+            android:hint="@string/nome_completo"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textSize="18sp"
+            tools:ignore="TextFields" />
+
+        <TextView
+            android:id="@+id/labelEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/email"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:autofillHints=""
+            android:background="@drawable/edittext_backgroud"
+            android:ems="10"
+            android:hint="@string/digite_seu_email"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textSize="18sp"
+            tools:ignore="TextFields" />
+
+
+        <TextView
+            android:id="@+id/labelPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/senha"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:autofillHints=""
+            android:background="@drawable/edittext_backgroud"
+            android:ems="10"
+            android:hint="@string/sua_senha"
+            android:importantForAccessibility="yes"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/labelConfirmarSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/confirmar_senha"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextConfirmarSenha"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:autofillHints=""
+            android:background="@drawable/edittext_backgroud"
+            android:ems="10"
+            android:hint="@string/senha_novamente"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textSize="18sp"
+            tools:ignore="TextFields" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonCadastrar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/button_login_backgroud"
+            android:importantForAccessibility="yes"
+            style="@android:style/Widget.Button"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:text="@string/cadastrar" />
+
+    </LinearLayout>
+</FrameLayout>
