@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D7D6D7"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="501dp"
+        android:layout_height="707dp"
+        android:contentDescription="@null"
+        android:scaleType="fitStart"
+        android:src="@drawable/bghome" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="452dp"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="fitEnd"
+        app:srcCompat="@drawable/bottom_white" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="212dp"
+        android:layout_height="101dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="620dp"
+        android:text="@string/seja_bem_vindo_ao_lookbook_da_leadtech"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="301dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="728dp"
+        android:text="@string/combinacoes_personalizadas"
+        android:textColor="#8b8b8b"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/button"
+        android:layout_width="195dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="253dp"
+        android:layout_marginTop="835dp"
+        android:paddingTop="17dp"
+        android:paddingStart="50dp"
+        android:background="@drawable/background_button_home"
+        android:text="@string/comecar"
+        android:textColor="#ffffff"
+        android:textSize="25sp" />
+
+
+</FrameLayout>
