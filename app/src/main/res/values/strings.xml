@@ -15,4 +15,10 @@
     <string name="facebook">Facebook</string>
     <string name="sem_conta">Não possue uma conta?</string>
     <string name="cadastro">Cadastre-se</string>
+    <string name="realize_seu_cadastro">Realize seu \nCadastro</string>
+    <string name="nome">Nome</string>
+    <string name="nome_completo">Digite seu nome completo</string>
+    <string name="confirmar_senha">Confirmar Senha</string>
+    <string name="senha_novamente">Digite sua senha novamente</string>
+    <string name="cadastrar">Cadastrar</string>
 </resources>

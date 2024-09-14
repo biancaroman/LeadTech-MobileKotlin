@@ -7,10 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.leadtech_mobile.R
 import com.example.leadtech_mobile.viewModel.LoginCallback
 import com.example.leadtech_mobile.viewModel.UsuarioViewModel
-import androidx.lifecycle.ViewModelProvider
 
 class LoginActivity : AppCompatActivity() {
 
