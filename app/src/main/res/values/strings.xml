@@ -3,4 +3,16 @@
     <string name="seja_bem_vindo_ao_lookbook_da_leadtech">Seja Bem Vindo ao Lookbook da LeadTech</string>
     <string name="combinacoes_personalizadas">Reinvente seu estilo com facilidade: crie, organize e descubra combinações perfeitas personalizadas para você!</string>
     <string name="comecar">Começar</string>
+    <string name="email">E-mail</string>
+    <string name="digite_seu_email">Digite seu email</string>
+    <string name="sua_senha">Digite sua senha</string>
+    <string name="senha">Senha</string>
+    <string name="realize_login">Olá, \nRealize o Login</string>
+    <string name="esqueceu_senha">Esqueceu sua senha? Clique aqui</string>
+    <string name="logar_com">Ou logar com</string>
+    <string name="login">Login</string>
+    <string name="google">Google</string>
+    <string name="facebook">Facebook</string>
+    <string name="sem_conta">Não possue uma conta?</string>
+    <string name="cadastro">Cadastre-se</string>
 </resources>
