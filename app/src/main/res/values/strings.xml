@@ -21,4 +21,10 @@
     <string name="confirmar_senha">Confirmar Senha</string>
     <string name="senha_novamente">Digite sua senha novamente</string>
     <string name="cadastrar">Cadastrar</string>
+    <string name="add_lookbook">Adicionar Lookbook</string>
+    <string name="look_suggestions">Sugestões de Look</string>
+    <string name="home">home</string>
+    <string name="search">search</string>
+    <string name="favorites">favorites</string>
+    <string name="profile">profile</string>
 </resources>
