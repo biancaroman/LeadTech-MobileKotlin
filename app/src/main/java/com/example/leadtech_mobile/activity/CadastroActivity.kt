@@ -1,52 +1,78 @@
 package com.example.leadtech_mobile.activity
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.leadtech_mobile.R
+import com.example.leadtech_mobile.model.Usuario
+import com.example.leadtech_mobile.viewModel.CadastroCallback
+import com.example.leadtech_mobile.viewModel.UsuarioViewModel
 
 class CadastroActivity : AppCompatActivity() {
+
+    private lateinit var usuarioViewModel: UsuarioViewModel
+    private lateinit var nomeEditText: EditText
+    private lateinit var emailEditText: EditText
+    private lateinit var senhaEditText: EditText
+    private lateinit var btnCadastrar: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro)
 
-        supportActionBar?.hide()
-        window.statusBarColor = Color.WHITE
+        // Inicializando as Views
+        nomeEditText = findViewById(R.id.editTextNome)
+        emailEditText = findViewById(R.id.editTextEmail)
+        senhaEditText = findViewById(R.id.editTextPassword)
+        btnCadastrar = findViewById(R.id.buttonCadastrar)
 
-        // Captura os campos de cadastro
-        val edtNome = findViewById<EditText>(R.id.editTextNome)
-        val edtEmail = findViewById<EditText>(R.id.editTextEmail)
-        val edtSenha = findViewById<EditText>(R.id.editTextPassword)
-        val edtConfirmarSenha = findViewById<EditText>(R.id.editTextConfirmarSenha)
-        val btnCadastrar = findViewById<Button>(R.id.buttonCadastrar)
+        // Inicializando a ViewModel
+        usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
 
-        // Define a ação ao clicar no botão "Cadastrar"
+        // Configurando ação do botão de cadastro
         btnCadastrar.setOnClickListener {
-            val nome = edtNome.text.toString()
-            val email = edtEmail.text.toString()
-            val senha = edtSenha.text.toString()
-            val confirmarSenha = edtConfirmarSenha.text.toString()
-
-            if (nome.isNotEmpty() && email.isNotEmpty() && senha.isNotEmpty() && confirmarSenha.isNotEmpty()) {
-                if (senha == confirmarSenha) {
-                    // Simulação de cadastro bem-sucedido (você pode adicionar a lógica de cadastro aqui)
-                    Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show()
-
-                    // Redireciona para a tela de login após o cadastro
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(this, "As senhas não coincidem!", Toast.LENGTH_LONG).show()
-                }
-            } else {
-                Toast.makeText(this, "Por favor, preencha todos os campos!", Toast.LENGTH_LONG).show()
-            }
+            cadastrarUsuario()
         }
+    }
+
+    private fun cadastrarUsuario() {
+        val nome = nomeEditText.text.toString().trim()
+        val email = emailEditText.text.toString().trim()
+        val senha = senhaEditText.text.toString().trim()
+
+        // Validações básicas de campos vazios
+        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+            Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Criando o objeto Usuario (o id será gerado no ViewModel, se necessário)
+        val usuario = Usuario(id = "", nome = nome, email = email, senha = senha)
+
+        // Chama a função de cadastro na ViewModel
+        usuarioViewModel.cadastrarUsuario(usuario, object : CadastroCallback {
+            override fun onSuccess() {
+                runOnUiThread {
+                    // Exibe uma mensagem de sucesso e redireciona para a tela de login
+                    Toast.makeText(this@CadastroActivity, "Usuário cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@CadastroActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish() // Fecha a tela de cadastro
+                }
+            }
+
+            override fun onFailure() {
+                runOnUiThread {
+                    // Exibe uma mensagem de erro ao usuário
+                    Toast.makeText(this@CadastroActivity, "Falha ao cadastrar o usuário. Tente novamente.", Toast.LENGTH_SHORT).show()
+                    Log.e("CadastroActivity", "Erro ao cadastrar usuário no Firebase.")
+                }
+            }
+        })
     }
 }
