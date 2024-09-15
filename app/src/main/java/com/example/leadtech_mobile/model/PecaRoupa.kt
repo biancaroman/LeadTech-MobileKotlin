@@ -8,11 +8,3 @@ data class PecaRoupa(
     val tamanho: Tamanho,
     val urlImagem: String
 )
-
-enum class Categoria {
-    CAMISA, CALCA, VESTIDO, SAPATO, ACESSORIO
-}
-
-enum class Tamanho {
-    PP, P, M, G, GG, XG
-}
