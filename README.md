@@ -11,7 +11,6 @@ O objetivo principal do LeadTech Mobile é facilitar a organização dos looks e
 - **Recebam sugestões automáticas de looks**: Baseadas em suas peças salvas, o sistema oferece sugestões para facilitar a escolha do visual do dia.
 - **Cadastro e Autenticação de Usuários**: Os usuários podem criar contas e gerenciar seus dados com segurança.
 
----
 
 ## Funcionalidades
 
