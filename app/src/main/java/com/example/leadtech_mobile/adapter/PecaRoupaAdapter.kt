@@ -12,8 +12,8 @@ class PecaRoupaAdapter : RecyclerView.Adapter<PecaRoupaAdapter.PecaViewHolder>()
 
     private var pecasList: List<PecaRoupa> = listOf()
 
-    fun submitList(pecas: List<PecaRoupa>) {
-        pecasList = pecas
+    fun submitList(pecas: List<PecaRoupa>?) {
+        pecasList = pecas ?: emptyList()
         notifyDataSetChanged()
     }
 
