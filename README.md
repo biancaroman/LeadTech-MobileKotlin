@@ -33,7 +33,6 @@ O objetivo principal do LeadTech Mobile é facilitar a organização dos looks e
 ### 5. **Cadastro de Novo Lookbook**
    - **Adicionar lookbooks com peças**: Usuários podem adicionar novos lookbooks ao sistema, fornecendo um nome e adicionando as peças.
 
----
 
 ## Estrutura do Projeto
 
