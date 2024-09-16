@@ -9,50 +9,52 @@ import com.example.leadtech_mobile.repository.LookbookRepository
 
 class LookbookViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val lookbookRepository: LookbookRepository = LookbookRepository()
+    private val lookbookRepository = LookbookRepository()
 
     private val _lookbooks = MutableLiveData<List<Lookbook>>()
     val lookbooks: LiveData<List<Lookbook>>
         get() = _lookbooks
 
-    private val _lookbookDetails = MutableLiveData<Lookbook>()
-    val lookbookDetails: LiveData<Lookbook>
+    private val _lookbookDetails = MutableLiveData<Lookbook?>()
+    val lookbookDetails: LiveData<Lookbook?>
         get() = _lookbookDetails
 
     init {
-        val exampleLookbook1 = Lookbook(id = "1", nome = "Lookbook Primavera", pecas = emptyList())
-        val exampleLookbook2 = Lookbook(id = "2", nome = "Lookbook Verão", pecas = emptyList())
-        val exampleLookbook3 = Lookbook(id = "3", nome = "Lookbook Outono", pecas = emptyList())
-
-        lookbookRepository.addLookbook(exampleLookbook1)
-        lookbookRepository.addLookbook(exampleLookbook2)
-        lookbookRepository.addLookbook(exampleLookbook3)
-
         carregarLookbooks()
     }
 
     fun carregarLookbooks() {
-        _lookbooks.value = lookbookRepository.getAllLookbooks()
+        lookbookRepository.getAllLookbooks { lookbooks ->
+            _lookbooks.value = lookbooks
+        }
     }
 
-    fun getLookbookById(lookbookId: String): LiveData<Lookbook> {
-        _lookbookDetails.value = lookbookRepository.getLookbookById(lookbookId)
-        return lookbookDetails
+    fun getLookbookById(lookbookId: String) {
+        lookbookRepository.getLookbookById(lookbookId) { lookbook ->
+            _lookbookDetails.value = lookbook
+        }
     }
 
     fun adicionarLookbook(lookbook: Lookbook) {
-        lookbookRepository.addLookbook(lookbook)
-    }
-
-    fun updateLookbook(lookbook: Lookbook) {
-        lookbookRepository.updateLookbook(lookbook)
+        lookbookRepository.addLookbook(lookbook) { sucesso ->
+            if (sucesso) carregarLookbooks()  // Atualize a lista de lookbooks após adicionar
+        }
     }
 
     fun excluirLookbook(lookbookId: String) {
-        lookbookRepository.deleteLookbook(lookbookId)
+        lookbookRepository.deleteLookbook(lookbookId) { sucesso ->
+            if (sucesso) carregarLookbooks()  // Atualize a lista de lookbooks após exclusão
+        }
+    }
+
+    fun updateLookbook(lookbook: Lookbook) {
+        lookbookRepository.updateLookbook(lookbook) { sucesso ->
+            if (sucesso) carregarLookbooks()  // Atualize a lista de lookbooks após atualização
+        }
     }
 
     fun exportarLookbookParaPdf(lookbookId: String) {
-        lookbookRepository.exportLookbookToPdf(lookbookId)
+        // Lógica para exportar o lookbook para PDF
     }
 }
+

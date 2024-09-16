@@ -12,7 +12,6 @@ import com.example.leadtech_mobile.adapter.LookbookAdapter
 import com.example.leadtech_mobile.viewModel.LookbookViewModel
 import com.google.android.material.button.MaterialButton
 
-
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var lookbookViewModel: LookbookViewModel
@@ -41,7 +40,6 @@ class DashboardActivity : AppCompatActivity() {
             lookbookAdapter.submitList(lookbooks)
         })
 
-
         val btnAddLookbook = findViewById<MaterialButton>(R.id.btnAddLookbook)
         btnAddLookbook.setOnClickListener {
             val intent = Intent(this, AddLookbookActivity::class.java)
@@ -53,5 +51,10 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, SuggestionsActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        lookbookViewModel.carregarLookbooks()  // Atualiza a lista de lookbooks ao retomar a atividade
     }
 }

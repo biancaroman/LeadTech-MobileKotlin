@@ -49,12 +49,17 @@ class SuggestionsActivity : AppCompatActivity() {
             )
 
             val lookbookId = "lookbookId"
-            lookbookViewModel.getLookbookById(lookbookId).observe(this) { lookbook ->
+
+            // Observe the LiveData from LookbookViewModel
+            lookbookViewModel.lookbookDetails.observe(this) { lookbook ->
                 if (lookbook != null) {
                     val updatedPecas = lookbook.pecas + selectedPeca
                     lookbookViewModel.updateLookbook(lookbook.copy(pecas = updatedPecas))
                 }
             }
+
+            // Trigger the loading of the lookbook
+            lookbookViewModel.getLookbookById(lookbookId)
         }
 
         buttonRejectSuggestion.setOnClickListener {
@@ -62,5 +67,6 @@ class SuggestionsActivity : AppCompatActivity() {
         }
     }
 }
+
 
 
