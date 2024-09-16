@@ -1,6 +1,7 @@
 package com.example.leadtech_mobile.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -24,6 +25,9 @@ class CadastroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro)
+
+        supportActionBar?.hide()
+        window.statusBarColor = Color.WHITE
 
         // Inicializando as Views
         nomeEditText = findViewById(R.id.editTextNome)

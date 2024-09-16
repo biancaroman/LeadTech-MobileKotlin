@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.leadtech_mobile.R
 import com.example.leadtech_mobile.adapter.LookbookAdapter
 import com.example.leadtech_mobile.viewModel.LookbookViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.button.MaterialButton
+
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -45,7 +46,7 @@ class DashboardActivity : AppCompatActivity() {
         })
 
         // Botão para criar um novo lookbook
-        val btnAddLookbook = findViewById<FloatingActionButton>(R.id.btnAddLookbook)
+        val btnAddLookbook = findViewById<MaterialButton>(R.id.btnAddLookbook)
         btnAddLookbook.setOnClickListener {
             // Vai para a tela de criação de novo lookbook
             val intent = Intent(this, AddLookbookActivity::class.java)
@@ -53,7 +54,7 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         // Botão para sugestões automáticas de looks
-        val btnSuggestions = findViewById<FloatingActionButton>(R.id.btnSuggestions)
+        val btnSuggestions = findViewById<MaterialButton>(R.id.btnSuggestions)
         btnSuggestions.setOnClickListener {
             val intent = Intent(this, SuggestionsActivity::class.java)
             startActivity(intent)
