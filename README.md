@@ -161,7 +161,7 @@ implementation 'com.google.android.material:material:1.5.0'
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/leadtech-mobile.git
+https://github.com/biancaroman/LeadTech-MobileKotlin.git
 ```
 
 2. Abra o projeto no Android Studio.
