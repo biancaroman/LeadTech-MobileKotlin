@@ -11,6 +11,32 @@ O objetivo principal do LeadTech Mobile é facilitar a organização dos looks e
 - **Recebam sugestões automáticas de looks**: Baseadas em suas peças salvas, o sistema oferece sugestões para facilitar a escolha do visual do dia.
 - **Cadastro e Autenticação de Usuários**: Os usuários podem criar contas e gerenciar seus dados com segurança.
 
+## 📂 Estrutura de Pastas
+```tree
+  app
+├── manifests
+│   └── AndroidManifest.xml
+├── kotlin+java
+│   └── com.example.leadtech_mobile
+│       ├── activity
+│       │   └── [Atividades/Telas do Aplicativo]
+│       ├── adapter
+│       │   └── [Adaptadores para RecyclerView]
+│       ├── model
+│       │   └── [Modelos de Dados]
+│       ├── repository
+│       │   └── [Classes de Repositório]
+│       ├── viewModel
+│           └── [ViewModels para lógica de negócio]
+└── res
+    ├── drawable
+    ├── layout
+    |     └── [Layout (estilização) das Páginas]
+    ├── menu
+    ├── mipmap
+    ├── values
+    └── xml
+```
 
 ## Funcionalidades
 
