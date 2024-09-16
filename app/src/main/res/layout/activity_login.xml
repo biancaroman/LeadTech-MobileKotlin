@@ -198,7 +198,7 @@
             android:background="@drawable/button_login_backgroud"
             android:importantForAccessibility="yes"
             style="@android:style/Widget.Button"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
             android:text="@string/login" />
