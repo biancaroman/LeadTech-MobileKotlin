@@ -40,49 +40,25 @@ O objetivo principal do LeadTech Mobile é facilitar a organização dos looks e
 
 #### 1. **HomeActivity**
    - **Descrição**: Página inicial que leva o usuário ao login.
-   - **Funcionalidade**: 
-     - Um botão simples que redireciona para a `LoginActivity`.
-     - Customização do status bar com uma cor azul.
 
 #### 2. **LoginActivity**
    - **Descrição**: Tela de login onde os usuários podem inserir suas credenciais.
-   - **Funcionalidade**:
-     - Campo de e-mail e senha.
-     - Validação básica de campos vazios.
-     - Integração futura com serviços de autenticação (como Firebase).
 
 #### 3. **CadastroActivity**
    - **Descrição**: Tela de cadastro onde novos usuários podem se registrar.
-   - **Funcionalidade**:
-     - Captura o nome, e-mail e senha dos usuários.
-     - Realiza a validação básica dos campos.
-     - Chama a função de cadastro no `UsuarioViewModel`.
 
 #### 4. **DashboardActivity**
    - **Descrição**: Tela principal do aplicativo após o login.
-   - **Funcionalidade**:
-     - Exibe uma lista de lookbooks com o `RecyclerView`.
-     - Permite adicionar novos lookbooks através de um botão.
-     - Redireciona o usuário para os detalhes de um lookbook ou para a criação de sugestões automáticas.
   
 #### 5. **AddLookbookActivity**
    - **Descrição**: Tela para adicionar novos lookbooks ao sistema.
-   - **Funcionalidade**:
-     - Recebe o nome do lookbook.
-     - Validação básica para garantir que o nome não esteja vazio.
-     - Chama o método de salvar lookbook via `LookbookViewModel`.
 
 #### 6. **LookbookDetailsActivity**
    - **Descrição**: Tela que exibe os detalhes de um lookbook selecionado.
-   - **Funcionalidade**:
-     - Exibe a lista de peças pertencentes ao lookbook.
-     - Permite gerenciar (adicionar/remover) peças do lookbook.
 
 #### 7. **SuggestionsActivity**
    - **Descrição**: Tela que sugere looks automaticamente para o usuário com base nos lookbooks cadastrados.
-   - **Funcionalidade**:
-     - Exibe sugestões geradas a partir de combinações das peças do usuário.
-
+     
 
 ## API e Requisições
 
