@@ -21,36 +21,30 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Oculta a barra de ação e ajusta a cor da barra de status
         supportActionBar?.hide()
         window.statusBarColor = Color.WHITE
 
-        // Inicializa a ViewModel
         usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
 
-        // Referências para os campos de texto e botões
         val edtEmail = findViewById<EditText>(R.id.editTextEmail)
         val edtPassword = findViewById<EditText>(R.id.editTextPassword)
         val btnLogin = findViewById<Button>(R.id.buttonLogin)
         val btnCadastro = findViewById<Button>(R.id.buttonCadastro)
 
-        // Configuração do clique no botão de login
         btnLogin.setOnClickListener {
             val email = edtEmail.text.toString().trim()
             val password = edtPassword.text.toString().trim()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                // Chama o método de login da ViewModel
                 usuarioViewModel.login(email, password, object : LoginCallback {
                     override fun onSuccess() {
                         runOnUiThread {
                             Log.d("LoginActivity", "Login realizado com sucesso!")
                             Toast.makeText(this@LoginActivity, "Login bem-sucedido!", Toast.LENGTH_SHORT).show()
 
-                            // Navega para o DashboardActivity
                             val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
                             startActivity(intent)
-                            finish() // Fecha a tela de login
+                            finish()
                         }
                     }
 
@@ -63,14 +57,12 @@ class LoginActivity : AppCompatActivity() {
                 })
             } else {
                 runOnUiThread {
-                    // Exibe um alerta se os campos estiverem vazios
                     Log.d("LoginActivity", "Campos de email ou senha não preenchidos.")
                     Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_LONG).show()
                 }
             }
         }
 
-        // Navegação para a tela de cadastro
         btnCadastro.setOnClickListener {
             val intent = Intent(this, CadastroActivity::class.java)
             startActivity(intent)

@@ -17,7 +17,6 @@ class PecaRoupaViewModel : ViewModel() {
     private val viewModelScope = CoroutineScope(Dispatchers.IO + viewModelJob)
 
     fun adicionarPecaAoLookbook(lookbookId: String) {
-        // Cria uma peça de roupa de exemplo
         val novaPeca = PecaRoupa(
             id = "newId",
             nome = "Nova Peça",
@@ -27,7 +26,6 @@ class PecaRoupaViewModel : ViewModel() {
             urlImagem = "https://example.com/image.jpg"
         )
 
-        // Adiciona a peça ao lookbook
         viewModelScope.launch {
             pecaRoupaRepository.adicionarPecaAoLookbook(lookbookId, novaPeca)
         }
@@ -35,6 +33,6 @@ class PecaRoupaViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        viewModelJob.cancel() // Cancela o escopo quando o ViewModel é destruído
+        viewModelJob.cancel()
     }
 }

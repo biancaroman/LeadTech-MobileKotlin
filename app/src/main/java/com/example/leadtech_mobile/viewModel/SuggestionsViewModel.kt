@@ -7,9 +7,7 @@ import com.example.leadtech_mobile.model.Tamanho
 
 class SuggestionsViewModel : ViewModel() {
 
-    // Gera sugestões de roupas (exemplo simplificado)
     fun generateSuggestions(): List<PecaRoupa> {
-        // Lógica de sugestão (exemplo estático, substitua com sua lógica real)
         return listOf(
             PecaRoupa(
                 id = "suggestion1",

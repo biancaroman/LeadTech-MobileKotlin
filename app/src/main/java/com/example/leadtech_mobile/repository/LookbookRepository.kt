@@ -4,14 +4,12 @@ import com.example.leadtech_mobile.model.Lookbook
 
 class LookbookRepository {
 
-    // Simulação de armazenamento, substitua pelo seu mecanismo de armazenamento real
     private val lookbooks = mutableListOf<Lookbook>()
 
     fun getLookbookById(id: String): Lookbook? {
         return lookbooks.find { it.id == id }
     }
 
-    // Busca todos os lookbooks
     fun getAllLookbooks(): List<Lookbook> {
         return lookbooks
     }

@@ -20,7 +20,6 @@ class LookbookViewModel(application: Application) : AndroidViewModel(application
         get() = _lookbookDetails
 
     init {
-        // Adiciona dados de exemplo
         val exampleLookbook1 = Lookbook(id = "1", nome = "Lookbook Primavera", pecas = emptyList())
         val exampleLookbook2 = Lookbook(id = "2", nome = "Lookbook Verão", pecas = emptyList())
         val exampleLookbook3 = Lookbook(id = "3", nome = "Lookbook Outono", pecas = emptyList())

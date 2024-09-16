@@ -18,7 +18,6 @@ class UsuarioViewModel : ViewModel() {
     val gson = Gson()
     private val handler = Handler(Looper.getMainLooper())
 
-    // Método para login de usuário
     fun login(email: String, password: String, callback: LoginCallback) {
         val request = Request.Builder()
             .url("$BASE_URL/usuarios.json")
@@ -36,7 +35,6 @@ class UsuarioViewModel : ViewModel() {
                 Log.d("UsuarioViewModel", "Resposta do servidor: $body")
 
                 try {
-                    // Conversão do JSON em um Map com tipos específicos
                     val typeToken = object : TypeToken<Map<String, Map<String, Any>>>() {}.type
                     val usuariosMap: Map<String, Map<String, Any>> = gson.fromJson(body, typeToken)
 
@@ -59,9 +57,7 @@ class UsuarioViewModel : ViewModel() {
         })
     }
 
-    // Método para cadastrar um novo usuário
     fun cadastrarUsuario(usuario: Usuario, callback: CadastroCallback) {
-        // Gerar um ID único para o usuário (se não estiver definido)
         val usuarioComId = if (usuario.id.isEmpty()) {
             usuario.copy(id = gerarIdUnico())
         } else {
@@ -71,9 +67,8 @@ class UsuarioViewModel : ViewModel() {
         val usuarioJson = gson.toJson(usuarioComId)
         val requestBody = usuarioJson.toRequestBody("application/json".toMediaType())
         val request = Request.Builder()
-            // Inserir o ID do usuário como chave no banco de dados
             .url("$BASE_URL/usuarios/${usuarioComId.id}.json")
-            .put(requestBody)  // Usar PUT para criar um novo usuário com chave definida
+            .put(requestBody)
             .build()
 
         client.newCall(request).enqueue(object : Callback {
@@ -94,19 +89,16 @@ class UsuarioViewModel : ViewModel() {
         })
     }
 
-    // Função auxiliar para gerar um ID único (simulação)
     private fun gerarIdUnico(): String {
         return "user_${System.currentTimeMillis()}"
     }
 }
 
-// Interface para callbacks de login
 interface LoginCallback {
     fun onSuccess()
     fun onFailure()
 }
 
-// Interface para callbacks de cadastro
 interface CadastroCallback {
     fun onSuccess()
     fun onFailure()

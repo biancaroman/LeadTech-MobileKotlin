@@ -38,34 +38,27 @@ class LookbookDetailsActivity : AppCompatActivity() {
         val btnExcluirLookbook = findViewById<Button>(R.id.buttonExcluirLookbook)
         val btnExportarPdf = findViewById<Button>(R.id.buttonExportarPdf)
 
-        // Configuração do RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
         pecaRoupaAdapter = PecaRoupaAdapter()
         recyclerView.adapter = pecaRoupaAdapter
 
-        // Carrega o lookbook pelo ID e observa mudanças
         lookbookViewModel.getLookbookById(lookbookId).observe(this, { lookbook ->
             edtNome.setText(lookbook.nome)
             pecaRoupaAdapter.submitList(lookbook.pecas)
         })
 
-        // Adiciona uma peça de roupa
         btnAdicionarPeca.setOnClickListener {
-            // Aqui deve-se iniciar a lógica de adicionar uma nova peça, usando PecaRoupaViewModel
             pecaRoupaViewModel.adicionarPecaAoLookbook(lookbookId)
             Toast.makeText(this, "Peça adicionada ao Lookbook", Toast.LENGTH_SHORT).show()
         }
 
-        // Excluir lookbook
         btnExcluirLookbook.setOnClickListener {
             lookbookViewModel.excluirLookbook(lookbookId)
             Toast.makeText(this, "Lookbook excluído", Toast.LENGTH_SHORT).show()
-            finish() // Fecha a tela e retorna para a lista
+            finish()
         }
 
-        // Exportar PDF
         btnExportarPdf.setOnClickListener {
-            // Chame a função de exportação de PDF
             lookbookViewModel.exportarLookbookParaPdf(lookbookId)
             Toast.makeText(this, "Lookbook exportado para PDF", Toast.LENGTH_SHORT).show()
         }

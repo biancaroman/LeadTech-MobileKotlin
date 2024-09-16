@@ -34,13 +34,11 @@ class SuggestionsActivity : AppCompatActivity() {
         val buttonRejectSuggestion = findViewById<Button>(R.id.buttonRejectSuggestion)
 
         buttonGenerateSuggestions.setOnClickListener {
-            // Gera sugestões de roupas e atualiza o TextView
             val suggestions = suggestionsViewModel.generateSuggestions()
             textViewSuggestions.text = suggestions.joinToString("\n") { it.nome }
         }
 
         buttonAddToLookbook.setOnClickListener {
-            // Adiciona a sugestão selecionada a um lookbook existente
             val selectedPeca = PecaRoupa(
                 id = "newId",
                 nome = "Nova peça sugerida",
@@ -50,7 +48,6 @@ class SuggestionsActivity : AppCompatActivity() {
                 urlImagem = "https://example.com/image.jpg"
             )
 
-            // Exemplo de ID do lookbook (substitua pelo real)
             val lookbookId = "lookbookId"
             lookbookViewModel.getLookbookById(lookbookId).observe(this) { lookbook ->
                 if (lookbook != null) {
@@ -61,7 +58,6 @@ class SuggestionsActivity : AppCompatActivity() {
         }
 
         buttonRejectSuggestion.setOnClickListener {
-            // Lógica para rejeitar a sugestão (exemplo simples)
             textViewSuggestions.text = "Sugestão rejeitada."
         }
     }

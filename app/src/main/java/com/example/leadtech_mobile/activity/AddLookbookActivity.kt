@@ -47,7 +47,6 @@ class AddLookbookActivity : AppCompatActivity() {
     }
 
     private fun generateId(): String {
-        // Gerar um ID único para o lookbook (pode usar UUID ou algum outro método de geração de ID)
         return System.currentTimeMillis().toString()
     }
 }

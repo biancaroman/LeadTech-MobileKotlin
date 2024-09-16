@@ -26,34 +26,28 @@ class DashboardActivity : AppCompatActivity() {
         supportActionBar?.hide()
         window.statusBarColor = Color.WHITE
 
-        // Inicializa ViewModel
         lookbookViewModel = ViewModelProvider(this).get(LookbookViewModel::class.java)
 
-        // Configura RecyclerView
         recyclerView = findViewById(R.id.recyclerViewLookbooks)
         recyclerView.layoutManager = LinearLayoutManager(this)
         lookbookAdapter = LookbookAdapter { lookbook ->
-            // Ao clicar no lookbook, vai para LookbookDetailsActivity
             val intent = Intent(this, LookbookDetailsActivity::class.java)
             intent.putExtra("LOOKBOOK_ID", lookbook.id)
             startActivity(intent)
         }
         recyclerView.adapter = lookbookAdapter
 
-        // Observa a lista de lookbooks do ViewModel
         lookbookViewModel.lookbooks.observe(this, { lookbooks ->
             lookbookAdapter.submitList(lookbooks)
         })
 
-        // Botão para criar um novo lookbook
+
         val btnAddLookbook = findViewById<MaterialButton>(R.id.btnAddLookbook)
         btnAddLookbook.setOnClickListener {
-            // Vai para a tela de criação de novo lookbook
             val intent = Intent(this, AddLookbookActivity::class.java)
             startActivity(intent)
         }
 
-        // Botão para sugestões automáticas de looks
         val btnSuggestions = findViewById<MaterialButton>(R.id.btnSuggestions)
         btnSuggestions.setOnClickListener {
             val intent = Intent(this, SuggestionsActivity::class.java)

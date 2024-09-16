@@ -34,7 +34,7 @@ class PecaRoupaAdapter : RecyclerView.Adapter<PecaRoupaAdapter.PecaViewHolder>()
 
         fun bind(peca: PecaRoupa) {
             textViewNomePeca.text = peca.nome
-            textViewCategoria.text = peca.categoria.name // Pegue o nome da categoria
+            textViewCategoria.text = peca.categoria.name
         }
     }
 }
