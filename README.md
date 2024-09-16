@@ -142,6 +142,8 @@ O sistema interage principalmente com os dados de lookbooks e usuários por meio
 - **Gradle** para gerenciamento de dependências.
 - **SDK Android** 21 ou superior.
 
+---
+
 ## Dependências
 
 Inclua as seguintes dependências no arquivo `build.gradle`:
@@ -152,6 +154,8 @@ implementation 'androidx.recyclerview:recyclerview:1.2.0'
 implementation 'com.google.android.material:material:1.5.0'
 
 ```
+
+---
 
 ## Como Executar o Projeto
 
