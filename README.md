@@ -83,7 +83,6 @@ O objetivo principal do LeadTech Mobile é facilitar a organização dos looks e
    - **Funcionalidade**:
      - Exibe sugestões geradas a partir de combinações das peças do usuário.
 
----
 
 ## API e Requisições
 
