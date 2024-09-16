@@ -1,8 +1,8 @@
-# Lookbook LeadTech 
+# 👗 Lookbook LeadTech 
 
 **Lookbook LeadTech** é um aplicativo de moda desenvolvido para ajudar usuários a gerenciar seus "lookbooks" (conjuntos de peças de roupa) e obter sugestões automáticas de looks. O objetivo principal é criar uma experiência prática e intuitiva para os usuários armazenarem, organizarem e visualizarem seus looks, bem como obterem sugestões com base em suas preferências.
 
-## Objetivo do Projeto
+## 🚀 Objetivo do Projeto
 
 O objetivo principal do LeadTech Mobile é facilitar a organização dos looks e guardar a criatividade dos usuários no seu dia-a-dia, permitindo que eles:
 
