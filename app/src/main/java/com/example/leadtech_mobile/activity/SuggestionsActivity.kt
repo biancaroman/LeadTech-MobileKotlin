@@ -50,7 +50,6 @@ class SuggestionsActivity : AppCompatActivity() {
 
             val lookbookId = "lookbookId"
 
-            // Observe the LiveData from LookbookViewModel
             lookbookViewModel.lookbookDetails.observe(this) { lookbook ->
                 if (lookbook != null) {
                     val updatedPecas = lookbook.pecas + selectedPeca
@@ -58,7 +57,6 @@ class SuggestionsActivity : AppCompatActivity() {
                 }
             }
 
-            // Trigger the loading of the lookbook
             lookbookViewModel.getLookbookById(lookbookId)
         }
 
