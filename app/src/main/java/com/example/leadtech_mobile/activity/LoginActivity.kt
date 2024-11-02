@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
             val password = edtPassword.text.toString().trim()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                usuarioViewModel.login(email, password, object : LoginCallback {
+                usuarioViewModel.login(email, password, this, object : LoginCallback {
                     override fun onSuccess() {
                         runOnUiThread {
                             Log.d("LoginActivity", "Login realizado com sucesso!")
@@ -69,4 +69,3 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 }
-

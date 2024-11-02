@@ -1,14 +1,17 @@
 package com.example.leadtech_mobile.activity
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.leadtech_mobile.R
+import com.example.leadtech_mobile.viewModel.UsuarioViewModel
 
 class HomeActivity : AppCompatActivity() {
+
+    private lateinit var usuarioViewModel: UsuarioViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,11 +22,16 @@ class HomeActivity : AppCompatActivity() {
         val statusBarColor = ContextCompat.getColor(this, R.color.blue)
         window.statusBarColor = statusBarColor
 
-        val button = findViewById<TextView>(R.id.button)
+        usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
 
-        button.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+        if (usuarioViewModel.verificarSessaoUsuario(this)) {
+            startActivity(Intent(this, DashboardActivity::class.java))
+            finish()
+        } else {
+            val button = findViewById<TextView>(R.id.button)
+            button.setOnClickListener {
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
         }
     }
 }
