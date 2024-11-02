@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.leadtech_mobile.R
 import com.example.leadtech_mobile.adapter.LookbookAdapter
 import com.example.leadtech_mobile.viewModel.LookbookViewModel
+import com.example.leadtech_mobile.viewModel.UsuarioViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var lookbookViewModel: LookbookViewModel
+    private lateinit var usuarioViewModel: UsuarioViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var lookbookAdapter: LookbookAdapter
 
@@ -26,6 +29,7 @@ class DashboardActivity : AppCompatActivity() {
         window.statusBarColor = Color.WHITE
 
         lookbookViewModel = ViewModelProvider(this).get(LookbookViewModel::class.java)
+        usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
 
         recyclerView = findViewById(R.id.recyclerViewLookbooks)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -51,10 +55,36 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, SuggestionsActivity::class.java)
             startActivity(intent)
         }
+
+        // Realizar o logout ao clicar no perfil
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_favorites -> {
+                    usuarioViewModel.logout(this)
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
+                    true
+                }
+                else -> false
+            }
+        }
+
+        // Verifica se o usuário está logado e, caso contrário, redireciona para a tela de login
+        verificarSessao()
+    }
+
+    private fun verificarSessao() {
+        if (!usuarioViewModel.verificarSessaoUsuario(this)) {
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        lookbookViewModel.carregarLookbooks()  // Atualiza a lista de lookbooks ao retomar a atividade
+        lookbookViewModel.carregarLookbooks()
     }
 }
