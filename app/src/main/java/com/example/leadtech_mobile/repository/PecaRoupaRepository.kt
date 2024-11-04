@@ -124,4 +124,25 @@ class PecaRoupaRepository {
             }
         })
     }
+
+    // Novo método para buscar peça pelo ID
+    fun getPecaRoupaById(id: String, callback: (PecaRoupa?) -> Unit) {
+        val request = Request.Builder()
+            .url("$BASE_URL/pecas/$id.json")
+            .get()
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("PecaRoupaRepository", "Falha ao obter PecaRoupa: ${e.message}")
+                handler.post { callback(null) }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val body = response.body?.string()
+                val pecaRoupa = gson.fromJson(body, PecaRoupa::class.java)
+                handler.post { callback(pecaRoupa) }
+            }
+        })
+    }
 }

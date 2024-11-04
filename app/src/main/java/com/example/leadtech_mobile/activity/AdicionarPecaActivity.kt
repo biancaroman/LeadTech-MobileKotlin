@@ -24,6 +24,7 @@ class AdicionarPecaActivity : AppCompatActivity() {
     private lateinit var spinnerTamanho: Spinner
     private lateinit var btnSalvarPeca: Button
     private lateinit var btnBuscarPeca: Button
+    private lateinit var btnCancelar: Button
     private lateinit var txtResultadoBusca: TextView
     private lateinit var iconEditar: ImageView
     private lateinit var iconDeletar: ImageView
@@ -47,6 +48,7 @@ class AdicionarPecaActivity : AppCompatActivity() {
         spinnerTamanho = findViewById(R.id.spinnerTamanho)
         btnSalvarPeca = findViewById(R.id.btnSalvarPeca)
         btnBuscarPeca = findViewById(R.id.btnBuscarPeca)
+        btnCancelar = findViewById(R.id.btnCancelar) // Botão para cancelar a adição
         txtResultadoBusca = findViewById(R.id.txtResultadoBusca)
         iconEditar = findViewById(R.id.iconEditar)
         iconDeletar = findViewById(R.id.iconDeletar)
@@ -69,6 +71,10 @@ class AdicionarPecaActivity : AppCompatActivity() {
 
         btnBuscarPeca.setOnClickListener {
             buscarPecaRoupa()
+        }
+
+        btnCancelar.setOnClickListener {
+            voltarParaLookbookDetails()
         }
 
         iconEditar.setOnClickListener {
@@ -105,16 +111,20 @@ class AdicionarPecaActivity : AppCompatActivity() {
             if (sucesso) {
                 lookbookId?.let { id ->
                     pecaRoupaRepository.adicionarPecaAoLookbook(id, novaPeca) { sucessoLookbook ->
-                        if (sucessoLookbook) {
-                            Toast.makeText(this, "Peça adicionada ao Lookbook!", Toast.LENGTH_SHORT).show()
-                            limparCampos() // Limpa os campos após adicionar
-                        } else {
-                            Toast.makeText(this, "Erro ao adicionar a peça ao Lookbook.", Toast.LENGTH_SHORT).show()
+                        runOnUiThread {
+                            if (sucessoLookbook) {
+                                Toast.makeText(this, "Peça adicionada ao Lookbook!", Toast.LENGTH_SHORT).show()
+                                voltarParaLookbookDetails() // Redireciona para LookbookDetailsActivity
+                            } else {
+                                Toast.makeText(this, "Erro ao adicionar a peça ao Lookbook.", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 }
             } else {
-                Toast.makeText(this, "Erro ao adicionar a peça.", Toast.LENGTH_SHORT).show()
+                runOnUiThread {
+                    Toast.makeText(this, "Erro ao adicionar a peça.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -122,28 +132,32 @@ class AdicionarPecaActivity : AppCompatActivity() {
     private fun buscarPecaRoupa() {
         val nomeBusca = edtBuscarNome.text.toString()
         pecaRoupaRepository.getPecaRoupaByNome(nomeBusca) { peca ->
-            if (peca != null) {
-                currentPeca = peca
-                txtResultadoBusca.text = peca.nome
-                txtResultadoBusca.visibility = View.VISIBLE
-                iconEditar.visibility = View.VISIBLE
-                iconDeletar.visibility = View.VISIBLE
-            } else {
-                txtResultadoBusca.text = "Peça não encontrada"
-                txtResultadoBusca.visibility = View.VISIBLE
-                iconEditar.visibility = View.GONE
-                iconDeletar.visibility = View.GONE
+            runOnUiThread {
+                if (peca != null) {
+                    currentPeca = peca
+                    txtResultadoBusca.text = peca.nome
+                    txtResultadoBusca.visibility = View.VISIBLE
+                    iconEditar.visibility = View.VISIBLE
+                    iconDeletar.visibility = View.VISIBLE
+                } else {
+                    txtResultadoBusca.text = "Peça não encontrada"
+                    txtResultadoBusca.visibility = View.VISIBLE
+                    iconEditar.visibility = View.GONE
+                    iconDeletar.visibility = View.GONE
+                }
             }
         }
     }
 
     private fun deletarPecaRoupa(pecaId: String) {
         pecaRoupaRepository.deletePecaRoupa(pecaId) { sucesso ->
-            if (sucesso) {
-                Toast.makeText(this, "Peça deletada com sucesso!", Toast.LENGTH_SHORT).show()
-                limparCampos()
-            } else {
-                Toast.makeText(this, "Erro ao deletar a peça.", Toast.LENGTH_SHORT).show()
+            runOnUiThread {
+                if (sucesso) {
+                    Toast.makeText(this, "Peça deletada com sucesso!", Toast.LENGTH_SHORT).show()
+                    limparCampos()
+                } else {
+                    Toast.makeText(this, "Erro ao deletar a peça.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -159,5 +173,12 @@ class AdicionarPecaActivity : AppCompatActivity() {
         iconEditar.visibility = View.GONE
         iconDeletar.visibility = View.GONE
         currentPeca = null
+    }
+
+    private fun voltarParaLookbookDetails() {
+        val intent = Intent(this, LookbookDetailsActivity::class.java)
+        intent.putExtra("LOOKBOOK_ID", lookbookId) // Passa o ID do lookbook de volta
+        startActivity(intent)
+        finish() // Fecha a Activity atual
     }
 }

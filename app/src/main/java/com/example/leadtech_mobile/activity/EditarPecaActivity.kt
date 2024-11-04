@@ -56,16 +56,18 @@ class EditarPecaActivity : AppCompatActivity() {
 
     private fun carregarDadosPeca() {
         pecaId?.let { id ->
-            pecaRoupaRepository.getPecaRoupaByNome(id) { peca ->
-                if (peca != null) {
-                    edtNome.setText(peca.nome)
-                    edtCor.setText(peca.cor)
-                    edtUrlImagem.setText(peca.urlImagem)
-                    spinnerCategoria.setSelection(Categoria.values().indexOf(peca.categoria))
-                    spinnerTamanho.setSelection(Tamanho.values().indexOf(peca.tamanho))
-                } else {
-                    Toast.makeText(this, "Peça não encontrada.", Toast.LENGTH_SHORT).show()
-                    finish() // Fecha a activity se não encontrar a peça
+            pecaRoupaRepository.getPecaRoupaById(id) { peca ->
+                runOnUiThread {
+                    if (peca != null) {
+                        edtNome.setText(peca.nome)
+                        edtCor.setText(peca.cor)
+                        edtUrlImagem.setText(peca.urlImagem)
+                        spinnerCategoria.setSelection(Categoria.values().indexOf(peca.categoria))
+                        spinnerTamanho.setSelection(Tamanho.values().indexOf(peca.tamanho))
+                    } else {
+                        Toast.makeText(this, "Peça não encontrada.", Toast.LENGTH_SHORT).show()
+                        finish() // Fecha a activity se não encontrar a peça
+                    }
                 }
             }
         }
@@ -88,12 +90,15 @@ class EditarPecaActivity : AppCompatActivity() {
         )
 
         pecaRoupaRepository.updatePecaRoupa(pecaAtualizada) { sucesso ->
-            if (sucesso) {
-                Toast.makeText(this, "Peça atualizada com sucesso!", Toast.LENGTH_SHORT).show()
-                finish()
-            } else {
-                Toast.makeText(this, "Erro ao atualizar a peça.", Toast.LENGTH_SHORT).show()
+            runOnUiThread {
+                if (sucesso) {
+                    Toast.makeText(this, "Peça atualizada com sucesso!", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Erro ao atualizar a peça.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
 }
+
