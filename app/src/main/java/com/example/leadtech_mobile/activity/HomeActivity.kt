@@ -24,13 +24,14 @@ class HomeActivity : AppCompatActivity() {
 
         usuarioViewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
 
-        if (usuarioViewModel.verificarSessaoUsuario(this)) {
-            startActivity(Intent(this, DashboardActivity::class.java))
-            finish()
-        } else {
-            val button = findViewById<TextView>(R.id.button)
-            button.setOnClickListener {
+        val button = findViewById<TextView>(R.id.button)
+        button.setOnClickListener {
+            if (usuarioViewModel.verificarSessaoUsuario(this)) {
+                startActivity(Intent(this, DashboardActivity::class.java))
+                finish()
+            } else {
                 startActivity(Intent(this, LoginActivity::class.java))
+                finish()
             }
         }
     }
