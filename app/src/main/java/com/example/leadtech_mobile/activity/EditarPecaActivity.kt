@@ -24,7 +24,6 @@ class EditarPecaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_peca)
 
-        // Recebe o ID da peça a ser editada
         pecaId = intent.getStringExtra("PECA_ID")
 
         edtNome = findViewById(R.id.edtNomePeca)
@@ -34,7 +33,6 @@ class EditarPecaActivity : AppCompatActivity() {
         spinnerTamanho = findViewById(R.id.spinnerTamanho)
         btnAtualizarPeca = findViewById(R.id.btnAtualizarPeca)
 
-        // Configurar os Spinners
         spinnerCategoria.adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
@@ -46,7 +44,6 @@ class EditarPecaActivity : AppCompatActivity() {
             Tamanho.values()
         )
 
-        // Carregar dados da peça para edição
         carregarDadosPeca()
 
         btnAtualizarPeca.setOnClickListener {
@@ -66,7 +63,7 @@ class EditarPecaActivity : AppCompatActivity() {
                         spinnerTamanho.setSelection(Tamanho.values().indexOf(peca.tamanho))
                     } else {
                         Toast.makeText(this, "Peça não encontrada.", Toast.LENGTH_SHORT).show()
-                        finish() // Fecha a activity se não encontrar a peça
+                        finish()
                     }
                 }
             }

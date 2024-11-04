@@ -48,12 +48,11 @@ class AdicionarPecaActivity : AppCompatActivity() {
         spinnerTamanho = findViewById(R.id.spinnerTamanho)
         btnSalvarPeca = findViewById(R.id.btnSalvarPeca)
         btnBuscarPeca = findViewById(R.id.btnBuscarPeca)
-        btnCancelar = findViewById(R.id.btnCancelar) // Botão para cancelar a adição
+        btnCancelar = findViewById(R.id.btnCancelar)
         txtResultadoBusca = findViewById(R.id.txtResultadoBusca)
         iconEditar = findViewById(R.id.iconEditar)
         iconDeletar = findViewById(R.id.iconDeletar)
 
-        // Configurar os Spinners
         spinnerCategoria.adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
@@ -79,7 +78,6 @@ class AdicionarPecaActivity : AppCompatActivity() {
 
         iconEditar.setOnClickListener {
             currentPeca?.let { peca ->
-                // Inicia a EditarPecaActivity com o ID da peça
                 val intent = Intent(this, EditarPecaActivity::class.java)
                 intent.putExtra("PECA_ID", peca.id)
                 startActivity(intent)
@@ -114,7 +112,7 @@ class AdicionarPecaActivity : AppCompatActivity() {
                         runOnUiThread {
                             if (sucessoLookbook) {
                                 Toast.makeText(this, "Peça adicionada ao Lookbook!", Toast.LENGTH_SHORT).show()
-                                voltarParaLookbookDetails() // Redireciona para LookbookDetailsActivity
+                                voltarParaLookbookDetails()
                             } else {
                                 Toast.makeText(this, "Erro ao adicionar a peça ao Lookbook.", Toast.LENGTH_SHORT).show()
                             }
@@ -177,8 +175,8 @@ class AdicionarPecaActivity : AppCompatActivity() {
 
     private fun voltarParaLookbookDetails() {
         val intent = Intent(this, LookbookDetailsActivity::class.java)
-        intent.putExtra("LOOKBOOK_ID", lookbookId) // Passa o ID do lookbook de volta
+        intent.putExtra("LOOKBOOK_ID", lookbookId)
         startActivity(intent)
-        finish() // Fecha a Activity atual
+        finish()
     }
 }

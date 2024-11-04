@@ -37,19 +37,19 @@ class LookbookViewModel(application: Application) : AndroidViewModel(application
 
     fun adicionarLookbook(lookbook: Lookbook) {
         lookbookRepository.addLookbook(lookbook) { sucesso ->
-            if (sucesso) carregarLookbooks()  // Atualize a lista de lookbooks após adicionar
+            if (sucesso) carregarLookbooks()
         }
     }
 
     fun excluirLookbook(lookbookId: String) {
         lookbookRepository.deleteLookbook(lookbookId) { sucesso ->
-            if (sucesso) carregarLookbooks()  // Atualize a lista de lookbooks após exclusão
+            if (sucesso) carregarLookbooks()
         }
     }
 
     fun updateLookbook(lookbook: Lookbook) {
         lookbookRepository.updateLookbook(lookbook) { sucesso ->
-            if (sucesso) carregarLookbooks()  // Atualize a lista de lookbooks após atualização
+            if (sucesso) carregarLookbooks()
         }
     }
 

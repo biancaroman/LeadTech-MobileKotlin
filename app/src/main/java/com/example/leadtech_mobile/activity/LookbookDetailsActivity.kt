@@ -43,7 +43,6 @@ class LookbookDetailsActivity : AppCompatActivity() {
         pecaRoupaAdapter = PecaRoupaAdapter()
         recyclerView.adapter = pecaRoupaAdapter
 
-        // Observe the lookbookDetails LiveData
         lookbookViewModel.lookbookDetails.observe(this) { lookbook ->
             lookbook?.let {
                 edtNome.setText(it.nome)
@@ -51,7 +50,6 @@ class LookbookDetailsActivity : AppCompatActivity() {
             }
         }
 
-        // Call the method to load the lookbook details
         lookbookViewModel.getLookbookById(lookbookId)
 
         btnAdicionarPeca.setOnClickListener {
@@ -63,7 +61,7 @@ class LookbookDetailsActivity : AppCompatActivity() {
         btnExcluirLookbook.setOnClickListener {
             lookbookViewModel.excluirLookbook(lookbookId)
             Toast.makeText(this, "Lookbook excluído", Toast.LENGTH_SHORT).show()
-            finish()  // Finaliza a atividade e retorna ao Dashboard
+            finish()
         }
 
         btnExportarPdf.setOnClickListener {
@@ -74,6 +72,6 @@ class LookbookDetailsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        lookbookViewModel.carregarLookbooks()  // Garanta que a lista de lookbooks esteja atualizada
+        lookbookViewModel.carregarLookbooks()
     }
 }

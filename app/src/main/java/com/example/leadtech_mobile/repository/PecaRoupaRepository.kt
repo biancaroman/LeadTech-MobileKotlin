@@ -40,9 +40,8 @@ class PecaRoupaRepository {
 
     // Obter uma PecaRoupa pelo Nome
     fun getPecaRoupaByNome(nome: String, callback: (PecaRoupa?) -> Unit) {
-        // Endpoint que retorna todas as peças
         val request = Request.Builder()
-            .url("$BASE_URL/pecas.json") // URL que retorna todas as peças
+            .url("$BASE_URL/pecas.json")
             .get()
             .build()
 
@@ -54,10 +53,8 @@ class PecaRoupaRepository {
 
             override fun onResponse(call: Call, response: Response) {
                 val body = response.body?.string()
-                // Converte a resposta para um Map de JSON onde cada entrada é uma peça
                 val pecasMap: Map<String, PecaRoupa> = gson.fromJson(body, object : TypeToken<Map<String, PecaRoupa>>() {}.type)
 
-                // Filtra a peça pelo nome
                 val pecaEncontrada = pecasMap.values.firstOrNull { it.nome.equals(nome, ignoreCase = true) }
                 handler.post { callback(pecaEncontrada) }
             }
@@ -125,7 +122,7 @@ class PecaRoupaRepository {
         })
     }
 
-    // Novo método para buscar peça pelo ID
+    // Buscar peça pelo ID
     fun getPecaRoupaById(id: String, callback: (PecaRoupa?) -> Unit) {
         val request = Request.Builder()
             .url("$BASE_URL/pecas/$id.json")

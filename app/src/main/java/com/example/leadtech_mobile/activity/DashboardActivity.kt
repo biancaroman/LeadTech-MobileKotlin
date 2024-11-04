@@ -61,21 +61,21 @@ class DashboardActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_favorites -> {
-                    usuarioViewModel.logout(this) // Realiza o logout
-                    startActivity(Intent(this, HomeActivity::class.java)) // Redireciona para a HomeActivity
-                    finish() // Finaliza a atividade atual
+                    usuarioViewModel.logout(this)
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
                     true
                 }
                 R.id.nav_home -> {
-                    startActivity(Intent(this, HomeActivity::class.java)) // Redireciona para a HomeActivity
-                    finish() // Finaliza a atividade atual
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
                     true
                 }
-                else -> false // Para outros itens, não faz nada
+                else -> false
             }
         }
 
-        verificarSessao() // Chama o método para verificar a sessão
+        verificarSessao()
     }
 
     private fun verificarSessao() {
