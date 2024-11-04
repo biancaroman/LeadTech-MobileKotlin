@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Campo para buscar peça pelo nome -->
+    <EditText
+        android:id="@+id/edtBuscarNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Buscar Peça pelo Nome" />
+
+    <!-- Botão para acionar a busca -->
+    <Button
+        android:id="@+id/btnBuscarPeca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar Peça"
+        android:layout_marginTop="8dp" />
+
+    <!-- Resultado da busca, exibindo o nome da peça ou mensagem de não encontrada -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/txtResultadoBusca"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Peça não encontrada"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <!-- Ícone de editar -->
+        <ImageView
+            android:id="@+id/iconEditar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_edit"
+            android:contentDescription="Editar Peça"
+            android:visibility="gone" />
+
+        <!-- Ícone de deletar -->
+        <ImageView
+            android:id="@+id/iconDeletar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_delete"
+            android:contentDescription="Deletar Peça"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Campos para adicionar/editar peça -->
+    <EditText
+        android:id="@+id/edtNomePeca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome da Peça"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spinnerCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/edtCorPeca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cor da Peça"
+        android:layout_marginTop="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerTamanho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/edtUrlImagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="URL da Imagem"
+        android:layout_marginTop="8dp" />
+
+    <!-- Botão para salvar nova peça -->
+    <Button
+        android:id="@+id/btnSalvarPeca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salvar Peça"
+        android:layout_marginTop="16dp" />
+
+    <!-- Botão de cancelar -->
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

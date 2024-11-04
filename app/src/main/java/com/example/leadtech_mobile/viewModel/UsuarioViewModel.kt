@@ -1,13 +1,10 @@
 package com.example.leadtech_mobile.viewModel
 
 import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.leadtech_mobile.activity.HomeActivity
 import com.example.leadtech_mobile.model.Usuario
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

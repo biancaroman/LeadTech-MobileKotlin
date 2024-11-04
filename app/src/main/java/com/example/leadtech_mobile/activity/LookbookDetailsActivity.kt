@@ -1,5 +1,6 @@
 package com.example.leadtech_mobile.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
@@ -54,9 +55,10 @@ class LookbookDetailsActivity : AppCompatActivity() {
         lookbookViewModel.getLookbookById(lookbookId)
 
         btnAdicionarPeca.setOnClickListener {
-            pecaRoupaViewModel.adicionarPecaAoLookbook(lookbookId)
-            Toast.makeText(this, "Peça adicionada ao Lookbook", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, AdicionarPecaActivity::class.java)
+            startActivity(intent)
         }
+
 
         btnExcluirLookbook.setOnClickListener {
             lookbookViewModel.excluirLookbook(lookbookId)

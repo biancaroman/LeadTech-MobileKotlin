@@ -70,7 +70,6 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
 
-        // Verifica se o usuário está logado e, caso contrário, redireciona para a tela de login
         verificarSessao()
     }
 
@@ -81,10 +80,5 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        lookbookViewModel.carregarLookbooks()
     }
 }
