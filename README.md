@@ -43,6 +43,7 @@ O objetivo principal do LeadTech Mobile é facilitar a organização dos looks e
 ### 1. **Autenticação de Usuário**
    - **Cadastro de novos usuários**: Permite que o usuário insira seu nome, e-mail e senha para criar uma conta no aplicativo.
    - **Login de usuários registrados**: Usuários registrados podem fazer login com suas credenciais.
+   - **Armazenamento de Sessão de Usuário**: Após o login, os dados do usuário são salvos localmente, permitindo que o usuário permaneça conectado na próxima abertura do aplicativo.
 
 ### 2. **Dashboard de Lookbooks**
    - **Exibição de lookbooks**: Mostra uma lista de lookbooks criados pelo usuário, com informações breves como o nome.
@@ -58,6 +59,15 @@ O objetivo principal do LeadTech Mobile é facilitar a organização dos looks e
 
 ### 5. **Cadastro de Novo Lookbook**
    - **Adicionar lookbooks com peças**: Usuários podem adicionar novos lookbooks ao sistema, fornecendo um nome e adicionando as peças.
+   - **Editar lookbooks existentes**: Ao clicar no ícone de edição, um formulário é aberto para que o usuário atualize informações do lookbook. Após salvar, uma mensagem de sucesso ou erro é exibida.
+   - **Feedback Visual para Operações CRUD**: O sistema exibe mensagens de sucesso ou erro ao adicionar, atualizar ou excluir lookbooks, e limpa os campos de entrada ao final das   operações bem-sucedidas.
+
+### 6. **Operção CRUD de Peças de Roupa**
+  - **Criar nova peça**: Os usuários podem cadastrar novas peças de roupa fornecendo informações como nome, categoria, cor e tamanho.
+  - **Ler peças existentes**: O sistema permite que os usuários visualizem todas as peças de roupa cadastradas.
+  - **Atualizar peças**: Os usuários podem editar as informações de uma peça de roupa existente.
+  - **Remover peças**: Os usuários podem excluir peças de roupa que não desejam mais manter.
+
 
 
 ## Estrutura do Projeto
@@ -84,6 +94,16 @@ O objetivo principal do LeadTech Mobile é facilitar a organização dos looks e
 
 #### 7. **SuggestionsActivity**
    - **Descrição**: Tela que sugere looks automaticamente para o usuário com base nos lookbooks cadastrados.
+     
+#### 8. AddPecaRoupaActivity
+  - **Descrição**: Tela para adicionar novas peças de roupa ao sistema, permitindo que o usuário insira informações como nome, categoria, cor e tamanho.
+
+#### 9. EditPecaRoupaActivity
+  - **Descrição**: Tela para editar informações de uma peça de roupa existente. O usuário pode atualizar os detalhes e salvar as alterações.
+
+#### 10. PecaRoupaDetailsActivity
+  - **Descrição**: Tela que exibe os detalhes de uma peça de roupa específica, com opções para editar ou remover a peça.
+
      
 
 ## API e Requisições
@@ -132,6 +152,51 @@ O sistema interage principalmente com os dados de lookbooks e usuários por meio
     - `lookbookId`: String (ID do lookbook)
   - **Resposta**:
     - Detalhes do lookbook, incluindo as peças.
+   
+### **Requisições de Peças de Roupa**
+- **Listar Peças de Roupa**: O sistema utiliza o PecaRoupaViewModel para carregar todas as peças de roupa de um usuário.
+  - **Endpoint (Futuro)**: /pecas
+  - **Parâmetros**:
+    - `userId`: String (ID do usuário autenticado)
+  - **Resposta**:
+    - Lista de peças de roupa.
+      
+- **Criar Peça de Roupa**: Ao adicionar uma nova peça, o PecaRoupaViewModel faz uma requisição para armazenar uma nova peça de roupa.
+  - **Endpoint (Futuro)**: /pecas/create
+  - **Parâmetros**:
+    - `nome`: String (Nome da peça)
+    - `categoria`: String (Categoria da peça, ex: CAMISA, CALCA)
+    - `cor`: String (Cor da peça)
+    - `tamanho`: String (Tamanho da peça)
+    - `urlImagem`: String (URL da imagem da peça)
+  - **Resposta**:
+    - 201 Created em caso de sucesso.
+  
+- **Obter Detalhes da Peça de Roupa**: Quando o usuário acessa uma peça, o sistema carrega os detalhes dessa peça.
+  - **Endpoint (Futuro)**: /pecas/{pecaId}
+  - **Parâmetros**:
+    - `pecaId`: String (ID da peça)
+  - **Resposta**:
+    - Detalhes da peça, incluindo nome, categoria, cor, tamanho e imagem.
+      
+- **Atualizar Peça de Roupa**: O PecaRoupaViewModel permite que o usuário atualize os detalhes de uma peça existente.
+  - **Endpoint (Futuro)**: /pecas/update/{pecaId}
+  - **Parâmetros**:
+    - `pecaId`: String (ID da peça)
+    - `nome`: String (Novo nome da peça)
+    - `categoria`: String (Nova categoria da peça)
+    - `cor`: String (Nova cor da peça)
+    - `tamanho`: String (Novo tamanho da peça)
+    - `urlImagem`: String (Nova URL da imagem da peça)
+  - **Resposta**:
+    - 200 OK em caso de sucesso.
+      
+- **Remover Peça de Roupa**: O sistema permite que o usuário remova uma peça de roupa.
+  - **Endpoint (Futuro)**: /pecas/delete/{pecaId}
+  - **Parâmetros**:
+    - `pecaId`: String (ID da peça)
+  - **Resposta**:
+    - 204 No Content em caso de sucesso.
 
 ---
 
